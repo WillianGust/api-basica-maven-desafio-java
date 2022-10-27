@@ -6,11 +6,24 @@ import java.util.List;
 import com.br.willian.API.models.Profissional;
 
 public class ProfissionalServico {
-  public static List<Profissional> profissionais(){
-    var lista = new ArrayList<Profissional>();
-    lista.add(new Profissional(1, "Willian"));
-    lista.add(new Profissional(2, "Helena"));
-    lista.add(new Profissional(3, "Giovani"));
-    return lista;
+
+  private ProfissionalServico(){ }
+  private List<Profissional> profissionais;
+  private static ProfissionalServico profissionalServico;
+  
+  public static ProfissionalServico getInstancia(){
+    if(profissionalServico == null)
+      profissionalServico = new ProfissionalServico();
+    return profissionalServico;
+  }
+
+  public List<Profissional> getProfissionais(){
+    if(this.profissionais == null)
+      this.profissionais = new ArrayList<Profissional>();
+    return this.profissionais;
+  }
+
+  public void adicionar(Profissional profissional){
+    this.profissionais.add(profissional);
   }
 }
